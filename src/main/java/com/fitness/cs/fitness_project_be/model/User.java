@@ -3,6 +3,7 @@ package com.fitness.cs.fitness_project_be.model;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
 import jakarta.persistence.Table;
 
 import java.util.List;
@@ -11,6 +12,7 @@ import jakarta.persistence.Entity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import jakarta.persistence.InheritanceType;
 
 @Entity
 @Table(name = "users")
