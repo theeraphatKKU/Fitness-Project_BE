@@ -16,8 +16,8 @@ public class Trainer extends User {
         super();
     }
     
-    public Trainer(int id, String name, String email, String address, String phoneNumber,String specialization,List<Scheduler> available){
-        super(id, name, email, address, phoneNumber);
+    public Trainer(int id, String name, String email, String password, String address, String phoneNumber, String role, String specialization, List<Scheduler> available){
+        super(id, name, email, password, address, phoneNumber, role);
         this.specialization = specialization;
         this.available = available;
     }
