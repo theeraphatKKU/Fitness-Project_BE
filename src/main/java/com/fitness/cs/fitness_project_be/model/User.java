@@ -3,9 +3,14 @@ package com.fitness.cs.fitness_project_be.model;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.Table;
 import jakarta.persistence.Entity;
+import jakarta.persistence.InheritanceType;
 
 @Entity
+@Table(name = "users")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

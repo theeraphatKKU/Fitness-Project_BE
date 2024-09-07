@@ -4,36 +4,33 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinColumn;
 
 @Entity
-public class Session implements ISession{
+public class Session implements ISession {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long sessionId;
-    Member member;
-    Trainer trainer;
-    Scheduler dateSession;
-    Program program;
-    boolean status;
+    private long sessionId;
 
-    public boolean isStatus() {
-        return status;
-    }
+    @ManyToOne
+    @JoinColumn(name = "member_id")
+    private Member member;
 
-    public void setStatus(boolean status) {
-        this.status = status;
-    }
+    @ManyToOne
+    @JoinColumn(name = "trainer_id")
+    private Trainer trainer;
 
-    @Override
-    public void scheduleSession() {
-        System.out.println("Session started");
-    }
+    @ManyToOne
+    @JoinColumn(name = "schedule_id")
+    private Schedule dateSession;
 
-    @Override
-    public void cancelSession() {
-        System.out.println("Session Canceled");
-    }
+    @ManyToOne
+    @JoinColumn(name = "program_id")
+    private Program program;
+
+    private boolean status;
 
     public long getSessionId() {
         return sessionId;
@@ -59,11 +56,11 @@ public class Session implements ISession{
         this.trainer = trainer;
     }
 
-    public Scheduler getDateSession() {
+    public Schedule getDateSession() {
         return dateSession;
     }
 
-    public void setDateSession(Scheduler dateSession) {
+    public void setDateSession(Schedule dateSession) {
         this.dateSession = dateSession;
     }
 
@@ -75,5 +72,21 @@ public class Session implements ISession{
         this.program = program;
     }
 
-    
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    @Override
+    public void scheduleSession() {
+        System.out.println("Session started");
+    }
+
+    @Override
+    public void cancelSession() {
+        System.out.println("Session Canceled");
+    }
 }
