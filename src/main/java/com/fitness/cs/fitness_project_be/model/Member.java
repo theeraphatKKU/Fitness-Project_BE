@@ -13,8 +13,8 @@ public class Member extends User{
         super();
     }
 
-    public Member(int id, String name, String email, String address, String phoneNumber, Date expireDate, String memberType) {
-        super(id, name, email, address, phoneNumber);
+    public Member(int id, String name, String email, String password, String address, String phoneNumber, String role, Date expireDate, String memberType) {
+        super(id, name, email, password, address, phoneNumber, role);
         this.expireDate = expireDate;
         this.memberType = memberType;
     }
