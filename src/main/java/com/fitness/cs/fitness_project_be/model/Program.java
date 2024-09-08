@@ -14,11 +14,13 @@ public class Program {
     String description;
     String programType;
 
-    public Program(String programName, String description, String programType) {
+    public Program(int programId,String programName, String description, String programType) {
+        this.programId = programId;
         this.programName = programName;
         this.description = description;
         this.programType = programType;
     }
+    
 
     public String getProgramName() {
         return programName;
@@ -42,6 +44,16 @@ public class Program {
 
     public void setProgramType(String programType) {
         this.programType = programType;
+    }
+
+
+    public int getProgramId() {
+        return programId;
+    }
+
+
+    public void setProgramId(int programId) {
+        this.programId = programId;
     }
     
     
