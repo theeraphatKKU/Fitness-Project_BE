@@ -30,7 +30,7 @@ public class ScheduleController {
         return new ResponseEntity<>(scheduleService.getAllSchedules(), HttpStatus.OK);
     }
 
-    @GetMapping 
+    @GetMapping("/{id}")
         public ResponseEntity<Optional<Schedule>> getScheduleById(@PathVariable("id") Integer id){
         return new ResponseEntity<>(scheduleService.getScheduleById(id), HttpStatus.OK);
     }

@@ -45,7 +45,7 @@ public class SessionController {
         try{
             sessionService.updateSession(sessionId, updateSession);
             return ResponseEntity.status(404).body("Session ID: " + sessionId + " has been deleted.");
-        }catch(Exception e){
+        }catch (Exception e){
             return ResponseEntity.status(404).body("Trainer not found with ID: " + sessionId);
         } 
     }

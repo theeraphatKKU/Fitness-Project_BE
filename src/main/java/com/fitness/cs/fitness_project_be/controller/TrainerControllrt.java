@@ -45,7 +45,7 @@ public class TrainerControllrt {
         try{
             trainerService.updateTrainer(id, updateTrainer);
             return ResponseEntity.ok("Trainer ID: " + id + " has been deleted.");
-        }catch(Exception e){
+        }catch (Exception e){
             return ResponseEntity.status(404).body("Trainer not found with ID: " + id);
         } 
     }
