@@ -3,13 +3,11 @@ package com.fitness.cs.fitness_project_be.service;
 import java.util.Optional;
 import java.util.List;
 import java.util.HashMap;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import com.fitness.cs.fitness_project_be.dto.ReqRes;
 import com.fitness.cs.fitness_project_be.model.User;
 import com.fitness.cs.fitness_project_be.repository.UserRepository;
@@ -29,8 +27,7 @@ public class UserManagementService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-
-    public ReqRes register(ReqRes registrationRequest){
+    public ReqRes register(ReqRes registrationRequest) {
         ReqRes resp = new ReqRes();
 
         try {
@@ -38,24 +35,24 @@ public class UserManagementService {
             user.setName(registrationRequest.getName());
             user.setEmail(registrationRequest.getEmail());
             user.setPassword(passwordEncoder.encode(registrationRequest.getPassword()));
+            user.setAddress(registrationRequest.getAddress());
             user.setPhoneNumber(registrationRequest.getPhoneNumber());
             user.setRole(registrationRequest.getRole());
             User UserResult = userRepository.save(user);
-            if (UserResult.getId()>0) {
+            if (UserResult.getId() > 0) {
                 resp.setUser((UserResult));
                 resp.setMessage("User Saved Successfully");
                 resp.setStatusCode(200);
             }
 
-        }catch (Exception e){
+        } catch (Exception e) {
             resp.setStatusCode(500);
             resp.setError(e.getMessage());
         }
         return resp;
     }
 
-
-    public ReqRes login(ReqRes loginRequest){
+    public ReqRes login(ReqRes loginRequest) {
         ReqRes response = new ReqRes();
         try {
             authenticationManager
@@ -71,20 +68,16 @@ public class UserManagementService {
             response.setExpirationTime("24Hrs");
             response.setMessage("Successfully Logged In");
 
-        }catch (Exception e){
+        } catch (Exception e) {
             response.setStatusCode(500);
             response.setMessage(e.getMessage());
         }
         return response;
     }
 
-
-
-
-
-    public ReqRes refreshToken(ReqRes refreshTokenReqiest){
+    public ReqRes refreshToken(ReqRes refreshTokenReqiest) {
         ReqRes response = new ReqRes();
-        try{
+        try {
             String ourEmail = jwtUtils.extractUsername(refreshTokenReqiest.getToken());
             User users = userRepository.findByEmail(ourEmail).orElseThrow();
             if (jwtUtils.isTokenValid(refreshTokenReqiest.getToken(), users)) {
@@ -98,13 +91,12 @@ public class UserManagementService {
             response.setStatusCode(200);
             return response;
 
-        }catch (Exception e){
+        } catch (Exception e) {
             response.setStatusCode(500);
             response.setMessage(e.getMessage());
             return response;
         }
     }
-
 
     public ReqRes getAllUsers() {
         ReqRes reqRes = new ReqRes();
@@ -127,7 +119,6 @@ public class UserManagementService {
         }
     }
 
-
     public ReqRes getUsersById(Integer id) {
         ReqRes reqRes = new ReqRes();
         try {
@@ -142,7 +133,6 @@ public class UserManagementService {
         return reqRes;
     }
 
-
     public ReqRes deleteUser(Integer userId) {
         ReqRes reqRes = new ReqRes();
         try {
@@ -150,7 +140,7 @@ public class UserManagementService {
             if (userOptional.isPresent()) {
                 userRepository.deleteById(userId);
                 reqRes.setStatusCode(200);
-                reqRes.setMessage("User deleted successfully");
+                reqRes.setMessage("User " + userId + " deleted successfully");
             } else {
                 reqRes.setStatusCode(404);
                 reqRes.setMessage("User not found for deletion");
@@ -171,6 +161,7 @@ public class UserManagementService {
                 existingUser.setEmail(updatedUser.getEmail());
                 existingUser.setName(updatedUser.getName());
                 existingUser.setPhoneNumber(updatedUser.getPhoneNumber());
+                existingUser.setAddress(updatedUser.getAddress());
                 existingUser.setRole(updatedUser.getRole());
 
                 // Check if password is present in the request
@@ -182,7 +173,7 @@ public class UserManagementService {
                 User savedUser = userRepository.save(existingUser);
                 reqRes.setUser(savedUser);
                 reqRes.setStatusCode(200);
-                reqRes.setMessage("User updated successfully");
+                reqRes.setMessage("User updated ID: " + userId + " successfully");
             } else {
                 reqRes.setStatusCode(404);
                 reqRes.setMessage("User not found for update");
@@ -194,8 +185,7 @@ public class UserManagementService {
         return reqRes;
     }
 
-
-    public ReqRes getMyInfo(String email){
+    public ReqRes getMyInfo(String email) {
         ReqRes reqRes = new ReqRes();
         try {
             Optional<User> userOptional = userRepository.findByEmail(email);
@@ -208,7 +198,7 @@ public class UserManagementService {
                 reqRes.setMessage("User not found for update");
             }
 
-        }catch (Exception e){
+        } catch (Exception e) {
             reqRes.setStatusCode(500);
             reqRes.setMessage("Error occurred while getting user info: " + e.getMessage());
         }
@@ -216,4 +206,3 @@ public class UserManagementService {
 
     }
 }
-
