@@ -2,37 +2,35 @@ package com.fitness.cs.fitness_project_be.model;
 import java.util.Date;
 
 import jakarta.persistence.Entity;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class Member extends User{
 
-    Date expireDate;
-    String memberType;
+    private Date expireDate;
+    private String memberType;
 
-    public Member() {
-        super();
-    }
+    // public Date getExpireDate() {
+    //     return expireDate;
+    // }
 
-    public Member(int id, String name, String email, String password, String address, String phoneNumber, String role, Date expireDate, String memberType) {
-        super(id, name, email, password, address, phoneNumber, role);
-        this.expireDate = expireDate;
-        this.memberType = memberType;
-    }
+    // public void setExpireDate(Date expireDate) {
+    //     this.expireDate = expireDate;
+    // }
 
-    public Date getExpireDate() {
-        return expireDate;
-    }
+    // public String getMemberType() {
+    //     return memberType;
+    // }
 
-    public void setExpireDate(Date expireDate) {
-        this.expireDate = expireDate;
-    }
-
-    public String getMemberType() {
-        return memberType;
-    }
-
-    public void setMemberType(String memberType) {
-        this.memberType = memberType;
-    }
+    // public void setMemberType(String memberType) {
+    //     this.memberType = memberType;
+    // }
     
 }

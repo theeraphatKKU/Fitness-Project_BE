@@ -5,11 +5,11 @@ import jakarta.persistence.Entity;
 @Entity
 public class Admin extends User{
 
-    public Admin() {
-        super();
-    }
+    // public Admin() {
+    //     super();
+    // }
 
-    public Admin(int id, String name, String email, String password, String address, String phoneNumber, String role) {
-        super(id, name, email, password, address, phoneNumber, role);
-    }
+    // public Admin(int id, String name, String email, String password, String address, String phoneNumber, String role) {
+    //     super(id, name, email, password, address, phoneNumber, role);
+    // }
 }
