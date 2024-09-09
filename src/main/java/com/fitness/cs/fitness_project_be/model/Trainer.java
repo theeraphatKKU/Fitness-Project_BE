@@ -9,7 +9,7 @@ import java.util.List;
 
 
 @Entity
-@Table(name = "trainer")
+@Table(name = "trainers")
 public class Trainer extends User {
 
     private String specialization;
