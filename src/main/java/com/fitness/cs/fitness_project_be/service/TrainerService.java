@@ -30,7 +30,6 @@ public class TrainerService {
     public Trainer updateTrainer(int id, Trainer updatedTrainer) {
         Optional<Trainer> existingTrainer = trainerRepository.findById(id);
         if (existingTrainer.isPresent()) {
-            updatedTrainer.setId(id);
             return trainerRepository.save(updatedTrainer);
         }
         return null; // Handle not found

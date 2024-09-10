@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import java.util.Date;
 
 @SpringBootApplication
 @Configuration
@@ -13,6 +14,7 @@ public class FitnessProjectBeApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(FitnessProjectBeApplication.class, args);
 		System.out.println("Start");
+		System.out.println(new Date(System.currentTimeMillis()));
 	}
 
 }

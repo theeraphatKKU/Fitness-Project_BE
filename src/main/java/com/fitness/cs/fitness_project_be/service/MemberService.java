@@ -30,7 +30,6 @@ public class MemberService {
     public Member updateMember(int id, Member updatedMember) {
         Optional<Member> existingMember = memberRepository.findById(id);
         if (existingMember.isPresent()) {
-            updatedMember.setId(id);
             return memberRepository.save(updatedMember);
         }
         return null; // Handle not found

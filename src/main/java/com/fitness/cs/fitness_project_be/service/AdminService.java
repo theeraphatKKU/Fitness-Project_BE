@@ -29,7 +29,6 @@ public class AdminService {
 
     public Admin updateAdmin(int id, Admin admin) {
         if (adminRepository.existsById(id)) {
-            admin.setId(id); // Ensure the ID is set to the correct value
             return adminRepository.save(admin);
         }
         return null; // or throw an exception if preferred

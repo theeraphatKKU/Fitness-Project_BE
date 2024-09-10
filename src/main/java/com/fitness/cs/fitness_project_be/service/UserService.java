@@ -30,7 +30,6 @@ public class UserService {
     public User updateUser(int id, User updatedUser) {
         Optional<User> existingUser = userRepository.findById(id);
         if (existingUser.isPresent()) {
-            updatedUser.setId(id);
             return userRepository.save(updatedUser);
         }
         return null; // Handle not found
