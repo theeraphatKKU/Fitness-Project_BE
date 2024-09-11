@@ -26,6 +26,7 @@ public class AdminController {
 
     @PostMapping
     public Admin createAdmin(@RequestBody Admin admin) {
+        System.out.println("Created");
         return adminRepository.save(admin);
     }
 
