@@ -1,7 +1,6 @@
 package com.fitness.cs.fitness_project_be.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -21,7 +20,6 @@ public class RefreshToken {
     private Integer tokenId;
 
     @Column(nullable = false, length = 500)
-    @NotBlank(message = "Please enter refresh token value!")
     private String refreshToken;
 
     @Column(nullable = false)

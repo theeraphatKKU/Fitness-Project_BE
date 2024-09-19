@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fitness.cs.fitness_project_be.model.RefreshToken;
 import com.fitness.cs.fitness_project_be.model.User;
+import com.fitness.cs.fitness_project_be.model.UserRole;
 import com.fitness.cs.fitness_project_be.service.AuthService;
 import com.fitness.cs.fitness_project_be.service.JwtService;
 import com.fitness.cs.fitness_project_be.service.RefreshTokenService;
@@ -55,8 +56,14 @@ public class AuthController {
         String accessToken = jwtService.generateToken(user);
 
         return ResponseEntity.ok(AuthResponse.builder()
+                .name(user.getName())
+                .email(user.getEmail())
+                .address(user.getAddress())
+                .phoneNumber(user.getPhoneNumber())
+                .role(UserRole.MEMBER)
                 .accessToken(accessToken)
                 .refreshToken(refreshToken.getRefreshToken())
+                .message("Renew Access Token")
                 .build());
     }
 }
