@@ -40,9 +40,8 @@ public class AuthService {
                 .name(registerRequest.getName())
                 .email(registerRequest.getEmail())
                 .password(passwordEncoder.encode(registerRequest.getPassword()))
-                .address(registerRequest.getAddress())
                 .phoneNumber(registerRequest.getPhoneNumber())
-                .role(UserRole.MEMBER)
+                .role(UserRole.USER)
                 .build();
 
         User savedUser = userRepository.save(user);
@@ -53,9 +52,8 @@ public class AuthService {
                 .name(user.getName())
                 .email(user.getEmail())
                 .password(passwordEncoder.encode(user.getPassword()))
-                .address(user.getAddress())
                 .phoneNumber(user.getPhoneNumber())
-                .role(UserRole.MEMBER)
+                .role(UserRole.USER)
                 .accessToken(accessToken)
                 .refreshToken(refreshToken.getRefreshToken())
                 .message("Register success")
@@ -78,9 +76,8 @@ public class AuthService {
         .name(user.getName())
         .email(user.getEmail())
         .password(passwordEncoder.encode(user.getPassword()))
-        .address(user.getAddress())
         .phoneNumber(user.getPhoneNumber())
-        .role(UserRole.MEMBER)
+        .role(UserRole.USER)
         .accessToken(accessToken)
         .refreshToken(refreshToken.getRefreshToken())
         .message("Login success")

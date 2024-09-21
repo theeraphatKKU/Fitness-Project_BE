@@ -19,28 +19,20 @@ public class Member extends User{
     private Date expireDate;
     private String memberType;
 
-    // public Member() {
-    //     super();
-    // }
+    public Date getExpireDate() {
+        return expireDate;
+    }
 
-    // public Member(int id, String name, String email, String password, String address, String phoneNumber, String role) {
-    //     super(id,name,email,password,address,phoneNumber,role);
-    // }
+    public void setExpireDate(Date expireDate) {
+        this.expireDate = expireDate;
+    }
 
-    // public Date getExpireDate() {
-    //     return expireDate;
-    // }
+    public String getMemberType() {
+        return memberType;
+    }
 
-    // public void setExpireDate(Date expireDate) {
-    //     this.expireDate = expireDate;
-    // }
-
-    // public String getMemberType() {
-    //     return memberType;
-    // }
-
-    // public void setMemberType(String memberType) {
-    //     this.memberType = memberType;
-    // }
+    public void setMemberType(String memberType) {
+        this.memberType = memberType;
+    }
     
 }

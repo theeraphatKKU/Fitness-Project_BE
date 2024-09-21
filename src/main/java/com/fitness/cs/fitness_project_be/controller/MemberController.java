@@ -3,6 +3,8 @@ package com.fitness.cs.fitness_project_be.controller;
 import com.fitness.cs.fitness_project_be.model.Member;
 import com.fitness.cs.fitness_project_be.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +18,7 @@ public class MemberController {
     @Autowired
     private MemberService memberService;
     
-    @PreAuthorize("hasAuthority('ADMIN')")
+    // @PreAuthorize("hasAuthority('ADMIN') || hasAuthority('MEMBER') ")
     @GetMapping
     public List<Member> getAllMembers() {
         return memberService.getAllMembers();
@@ -28,10 +30,15 @@ public class MemberController {
         return memberService.getMemberById(id);
     }
 
-    @PreAuthorize("hasAuthority('ADMIN') || hasAuthority('MEMBER')")
+    // @PostMapping
+    // public Member createMember(@RequestBody Member member) {
+    //     return memberService.createMember(member);
+    // }
+
     @PostMapping
-    public Member createMember(@RequestBody Member member) {
-        return memberService.createMember(member);
+    public ResponseEntity<Member> updateMemberDetails(@RequestBody Member member) {
+        Member updatedMember = memberService.createMember(member);
+        return new ResponseEntity<>(updatedMember, HttpStatus.OK);
     }
 
     @PreAuthorize("hasAuthority('ADMIN') || hasAuthority('MEMBER')")

@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
@@ -25,6 +27,7 @@ public class ForgotPassword {
     @Column(nullable = false)
     private Date expirationTime;
 
+    @JsonBackReference
     @OneToOne
     private User user;
 }

@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 
 import java.time.Instant;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Builder
 @NoArgsConstructor
@@ -25,6 +27,7 @@ public class RefreshToken {
     @Column(nullable = false)
     private Instant expirationTime;
 
+    @JsonBackReference
     @OneToOne
     private User user;
 }

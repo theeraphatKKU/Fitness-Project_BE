@@ -12,6 +12,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -37,17 +39,18 @@ public class User implements UserDetails{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(columnDefinition = "NVARCHAR(255)")
     private String name;
     @Column(unique = true, nullable = false)
     private String email;
     @Column(nullable = false)
     private String password;
-    private String address;
     private String phoneNumber;
 
     @OneToOne(mappedBy = "user")
     private RefreshToken refreshToken;
 
+    @JsonManagedReference
     @OneToOne(mappedBy = "user")
     private ForgotPassword forgotPassword;
 

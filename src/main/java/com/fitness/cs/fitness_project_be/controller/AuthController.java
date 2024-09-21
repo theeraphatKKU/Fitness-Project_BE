@@ -58,7 +58,6 @@ public class AuthController {
         return ResponseEntity.ok(AuthResponse.builder()
                 .name(user.getName())
                 .email(user.getEmail())
-                .address(user.getAddress())
                 .phoneNumber(user.getPhoneNumber())
                 .role(UserRole.MEMBER)
                 .accessToken(accessToken)
