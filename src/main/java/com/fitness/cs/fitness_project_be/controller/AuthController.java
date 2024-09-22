@@ -59,7 +59,7 @@ public class AuthController {
                 .name(user.getName())
                 .email(user.getEmail())
                 .phoneNumber(user.getPhoneNumber())
-                .role(UserRole.MEMBER)
+                .role(user.getRole())
                 .accessToken(accessToken)
                 .refreshToken(refreshToken.getRefreshToken())
                 .message("Renew Access Token")
