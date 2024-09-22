@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fitness.cs.fitness_project_be.model.RefreshToken;
 import com.fitness.cs.fitness_project_be.model.User;
-import com.fitness.cs.fitness_project_be.model.UserRole;
 import com.fitness.cs.fitness_project_be.service.AuthService;
 import com.fitness.cs.fitness_project_be.service.JwtService;
 import com.fitness.cs.fitness_project_be.service.RefreshTokenService;
