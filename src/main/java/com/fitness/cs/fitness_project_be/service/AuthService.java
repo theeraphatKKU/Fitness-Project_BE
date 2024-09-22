@@ -77,7 +77,7 @@ public class AuthService {
         .email(user.getEmail())
         .password(passwordEncoder.encode(user.getPassword()))
         .phoneNumber(user.getPhoneNumber())
-        .role(UserRole.USER)
+        .role(user.getRole())
         .accessToken(accessToken)
         .refreshToken(refreshToken.getRefreshToken())
         .message("Login success")
