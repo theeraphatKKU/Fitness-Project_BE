@@ -39,7 +39,7 @@ public class MemberController {
     return new ResponseEntity<>(filteredUsers, HttpStatus.OK);
     }
 
-    // @PreAuthorize("hasAuthority('ADMIN') || hasAuthority('MEMBER')")
+    
     @GetMapping("/{id}")
     public Optional<Member> getMemberById(@PathVariable int id) {
         return memberService.getMemberById(id);
@@ -58,14 +58,14 @@ public class MemberController {
     //     return new ResponseEntity<>(updatedMember, HttpStatus.OK);
     // }
 
-    // @PreAuthorize("hasAuthority('ADMIN') || hasAuthority('MEMBER')")
+    
     @PutMapping("/{id}")
     public Member updateMember(@PathVariable int id, @RequestBody Member member) {
         
         return memberService.updateMember(id, member);
     }
 
-    // @PreAuthorize("hasAuthority('ADMIN') || hasAuthority('MEMBER')")
+    
     @DeleteMapping("/{id}")
     public void deleteMember(@PathVariable int id) {
         memberService.deleteMember(id);

@@ -7,14 +7,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fitness.cs.fitness_project_be.model.RefreshToken;
-import com.fitness.cs.fitness_project_be.model.User;
 import com.fitness.cs.fitness_project_be.service.AuthService;
 import com.fitness.cs.fitness_project_be.service.JwtService;
 // import com.fitness.cs.fitness_project_be.service.RefreshTokenService;
 import com.fitness.cs.fitness_project_be.utils.AuthResponse;
 import com.fitness.cs.fitness_project_be.utils.LoginRequest;
-import com.fitness.cs.fitness_project_be.utils.RefreshTokenRequest;
 import com.fitness.cs.fitness_project_be.utils.RegisterRequest;
 
 @RestController

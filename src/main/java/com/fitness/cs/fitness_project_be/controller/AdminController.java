@@ -3,7 +3,6 @@ package com.fitness.cs.fitness_project_be.controller;
 import com.fitness.cs.fitness_project_be.model.Admin;
 import com.fitness.cs.fitness_project_be.repository.AdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
