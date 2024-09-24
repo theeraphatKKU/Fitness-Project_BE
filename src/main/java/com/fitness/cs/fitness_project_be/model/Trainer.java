@@ -24,9 +24,9 @@ public class Trainer extends User {
     @OneToMany(mappedBy = "trainer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Schedule> available;
 
-    // public Trainer() {
-    //     super();
-    // }
+    public Trainer(int id) {
+        super.setId(id);
+    }
 
     // public Trainer(int id, String name, String email, String password, String address, String phoneNumber, String role) {
     //     super(id,name,email,password,address,phoneNumber,role);

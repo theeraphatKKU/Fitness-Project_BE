@@ -12,6 +12,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Column;
@@ -47,8 +48,8 @@ public class User implements UserDetails{
     private String password;
     private String phoneNumber;
 
-    @OneToOne(mappedBy = "user")
-    private RefreshToken refreshToken;
+    // @OneToOne(mappedBy = "user")
+    // private RefreshToken refreshToken;
 
     @JsonManagedReference
     @OneToOne(mappedBy = "user")
@@ -58,9 +59,11 @@ public class User implements UserDetails{
     private UserRole role;
 
     @Override
+    @JsonIgnore
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(role.name()));
-    }
+    return List.of(new SimpleGrantedAuthority(role.name()));
+}
+
 
     @Override
     public String getPassword() {
@@ -91,77 +94,5 @@ public class User implements UserDetails{
     public boolean isEnabled() {
         return true;
     }
-
-
-    // public User() {
-    //     this.id = 0;
-    //     this.name = "";
-    //     this.email = "";
-    //     this.password = "";
-    //     this.address = "";
-    //     this.phoneNumber = "";
-    //     this.role = new UserRole();
-    // }
-
-    // public User(int id, String name, String email, String password, String address, String phoneNumber, UserRole role) {
-    //     this.id = id;
-    //     this.name = name;
-    //     this.email = email;
-    //     this.address = address;
-    //     this.phoneNumber = phoneNumber;
-    //     this.role = role;
-    // }
-
-    // public int getId() {
-    //     return id;
-    // }
-
-    // public void setId(int id) {
-    //     this.id = id;
-    // }
-
-    // public String getName() {
-    //     return name;
-    // }
-
-    // public void setName(String name) {
-    //     this.name = name;
-    // }
-
-    // public String getEmail() {
-    //     return email;
-    // }
-
-    // public void setEmail(String email) {
-    //     this.email = email;
-    // }
-
-    // public void setPassword(String password){
-    //     this.password = password;
-    // }
-
-    // public String getAddress() {
-    //     return address;
-    // }
-
-    // public void setAddress(String address) {
-    //     this.address = address;
-    // }
-
-    // public String getPhoneNumber() {
-    //     return phoneNumber;
-    // }
-
-    // public void setPhoneNumber(String phoneNumber) {
-    //     this.phoneNumber = phoneNumber;
-    // }
-
-    // public String getRole() {
-    //     return role;
-    // }
-
-    // public void setRole(String role) {
-    //     this.role = role;
-    // }
 
 }

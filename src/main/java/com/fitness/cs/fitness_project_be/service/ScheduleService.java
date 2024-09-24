@@ -35,9 +35,10 @@ public class ScheduleService {
         Optional<Schedule> scheduleOptional = scheduleRepository.findById(id);
         if (scheduleOptional.isPresent()) {
             Schedule schedule = scheduleOptional.get();
-            schedule.setDayOfWeek(scheduleDetails.getDayOfWeek());
+            schedule.setSdate(scheduleDetails.getSdate());
             schedule.setStartTime(scheduleDetails.getStartTime());
             schedule.setEndTime(scheduleDetails.getEndTime());
+            schedule.setStatus(scheduleDetails.getStatus());
             return scheduleRepository.save(schedule);
         } else {
             throw new RuntimeException("Schedule not found with id " + id);

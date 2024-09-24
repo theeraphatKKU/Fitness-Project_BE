@@ -1,43 +1,54 @@
 package com.fitness.cs.fitness_project_be.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
 import java.util.Date;
+import java.time.LocalTime;
+
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "schedule")
 public class Schedule {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "day_of_week")
-    private int dayOfWeek;
+    @Column(name = "s_date")
+    private Date sdate;
 
     @Column(name = "start_time")
-    private Date startTime;
+    private LocalTime startTime;
 
     @Column(name = "end_time")
-    private Date endTime;
+    private LocalTime endTime;
 
-    @ManyToOne
-    private Trainer trainer;
+    @Column(name = "status", columnDefinition = "NVARCHAR(50)")
+    private String status;
 
-    public Schedule() {
+    public Schedule(){
+
     }
 
-    public Schedule(int id, int dayOfWeek, Date startTime, Date endTime, Trainer trainer) {
+    public Schedule(int id, Date sdate, LocalTime startTime, LocalTime endTime, String status, Trainer trainer) {
         this.id = id;
-        this.dayOfWeek = dayOfWeek;
+        this.sdate = sdate;
         this.startTime = startTime;
         this.endTime = endTime;
+        this.status = status;
         this.trainer = trainer;
     }
 
-    // Getters and setters
+    @JsonBackReference
+    @ManyToOne
+    private Trainer trainer;
 
     public int getId() {
         return id;
@@ -47,28 +58,36 @@ public class Schedule {
         this.id = id;
     }
 
-    public int getDayOfWeek() {
-        return dayOfWeek;
+    public Date getSdate() {
+        return sdate;
     }
 
-    public void setDayOfWeek(int dayOfWeek) {
-        this.dayOfWeek = dayOfWeek;
+    public void setSdate(Date sdate) {
+        this.sdate = sdate;
     }
 
-    public Date getStartTime() {
+    public LocalTime getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Date startTime) {
+    public void setStartTime(LocalTime startTime) {
         this.startTime = startTime;
     }
 
-    public Date getEndTime() {
+    public LocalTime getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Date endTime) {
+    public void setEndTime(LocalTime endTime) {
         this.endTime = endTime;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public Trainer getTrainer() {
@@ -78,4 +97,5 @@ public class Schedule {
     public void setTrainer(Trainer trainer) {
         this.trainer = trainer;
     }
+
 }

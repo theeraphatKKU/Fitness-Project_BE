@@ -30,7 +30,7 @@ public class SessionController {
         return new ResponseEntity<>(sessionService.getAllSessions(), HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{sessionId}")
     public ResponseEntity<Optional<Session>> getSessionById(@PathVariable("sessionId") Integer sessionId){
         return new ResponseEntity<>(sessionService.getSessionById(sessionId), HttpStatus.OK);
     }
@@ -40,17 +40,17 @@ public class SessionController {
         return new ResponseEntity<>(sessionService.createSession(newSession), HttpStatus.OK);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{sessionId}")
     public ResponseEntity<String> updateSession(@PathVariable("sessionId") Integer sessionId, @RequestBody Session updateSession){
         try{
             sessionService.updateSession(sessionId, updateSession);
-            return ResponseEntity.status(404).body("Session ID: " + sessionId + " has been deleted.");
+            return ResponseEntity.ok("Session ID: " + sessionId + " has been updated.");
         }catch (Exception e){
-            return ResponseEntity.status(404).body("Trainer not found with ID: " + sessionId);
+            return ResponseEntity.status(404).body("Session not found with ID: " + sessionId);
         } 
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{sessionId}")
     public ResponseEntity<String> deleteSession(@PathVariable("sessionId") Integer sessionId){
         try{
             sessionService.deleteSession(sessionId);

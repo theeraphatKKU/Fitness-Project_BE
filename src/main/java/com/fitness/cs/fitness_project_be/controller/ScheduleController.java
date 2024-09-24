@@ -44,7 +44,7 @@ public class ScheduleController {
     public ResponseEntity<String> updateSchedule(@PathVariable("id") Integer id, @RequestBody Schedule updateSchedule){
         try{
             scheduleService.updateSchedule(id, updateSchedule);
-            return ResponseEntity.status(404).body("Schedule ID: " + id + " has been deleted.");
+            return ResponseEntity.ok("Schedule ID: " + id + " has been updated.");
         }catch(Exception e){
             return ResponseEntity.status(404).body("Schedule not found with ID: " + id);
         } 

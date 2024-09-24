@@ -1,5 +1,6 @@
 package com.fitness.cs.fitness_project_be.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,6 +23,20 @@ public class Session implements ISession {
     @JoinColumn(name = "trainer_id")
     private Trainer trainer;
 
+    public Session(){
+
+    }
+
+    public Session(long sessionId, Member member, Trainer trainer, Schedule dateSession, Program program,
+            String status) {
+        this.sessionId = sessionId;
+        this.member = member;
+        this.trainer = trainer;
+        this.dateSession = dateSession;
+        this.program = program;
+        this.status = status;
+    }
+
     @ManyToOne
     @JoinColumn(name = "schedule_id")
     private Schedule dateSession;
@@ -30,7 +45,8 @@ public class Session implements ISession {
     @JoinColumn(name = "program_id")
     private Program program;
 
-    private boolean status;
+    @Column(columnDefinition = "NVARCHAR(255)")
+    private String status;
 
     public long getSessionId() {
         return sessionId;
@@ -72,11 +88,11 @@ public class Session implements ISession {
         this.program = program;
     }
 
-    public boolean isStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

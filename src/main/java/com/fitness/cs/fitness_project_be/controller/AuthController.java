@@ -11,7 +11,7 @@ import com.fitness.cs.fitness_project_be.model.RefreshToken;
 import com.fitness.cs.fitness_project_be.model.User;
 import com.fitness.cs.fitness_project_be.service.AuthService;
 import com.fitness.cs.fitness_project_be.service.JwtService;
-import com.fitness.cs.fitness_project_be.service.RefreshTokenService;
+// import com.fitness.cs.fitness_project_be.service.RefreshTokenService;
 import com.fitness.cs.fitness_project_be.utils.AuthResponse;
 import com.fitness.cs.fitness_project_be.utils.LoginRequest;
 import com.fitness.cs.fitness_project_be.utils.RefreshTokenRequest;
@@ -24,15 +24,15 @@ public class AuthController {
     @Autowired
     private AuthService authService;
 
-    @Autowired
-    private RefreshTokenService refreshTokenService;
+    // @Autowired
+    // private RefreshTokenService refreshTokenService;
 
     @Autowired
     private JwtService jwtService;
 
-    public AuthController(AuthService authService, RefreshTokenService refreshTokenService, JwtService jwtService) {
+    public AuthController(AuthService authService, JwtService jwtService) {
         this.authService = authService;
-        this.refreshTokenService = refreshTokenService;
+        // this.refreshTokenService = refreshTokenService;
         this.jwtService = jwtService;
     }
 
@@ -46,22 +46,22 @@ public class AuthController {
         return ResponseEntity.ok(authService.login(loginRequest));
     }
 
-    @PostMapping("/refresh")
-    public ResponseEntity<AuthResponse> refreshToken(@RequestBody RefreshTokenRequest refreshTokenRequest) {
+    // @PostMapping("/refresh")
+    // public ResponseEntity<AuthResponse> refreshToken(@RequestBody RefreshTokenRequest refreshTokenRequest) {
 
-        RefreshToken refreshToken = refreshTokenService.verifyRefreshToken(refreshTokenRequest.getRefreshToken());
-        User user = refreshToken.getUser();
+    //     // RefreshToken refreshToken = refreshTokenService.verifyRefreshToken(refreshTokenRequest.getRefreshToken());
+    //     // User user = refreshToken.getUser();
 
-        String accessToken = jwtService.generateToken(user);
+    //     String accessToken = jwtService.generateToken(user);
 
-        return ResponseEntity.ok(AuthResponse.builder()
-                .name(user.getName())
-                .email(user.getEmail())
-                .phoneNumber(user.getPhoneNumber())
-                .role(user.getRole())
-                .accessToken(accessToken)
-                .refreshToken(refreshToken.getRefreshToken())
-                .message("Renew Access Token")
-                .build());
-    }
+    //     return ResponseEntity.ok(AuthResponse.builder()
+    //             .name(user.getName())
+    //             .email(user.getEmail())
+    //             .phoneNumber(user.getPhoneNumber())
+    //             .role(user.getRole())
+    //             .accessToken(accessToken)
+    //             .refreshToken(refreshToken.getRefreshToken())
+    //             .message("Renew Access Token")
+    //             .build());
+    // }
 }

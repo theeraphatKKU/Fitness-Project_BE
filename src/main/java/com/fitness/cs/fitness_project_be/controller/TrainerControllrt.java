@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,25 +27,29 @@ public class TrainerControllrt {
     @Autowired
     TrainerService trainerService;
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    // @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping
     public ResponseEntity<List<Trainer>> getAllTrainer() {
         return new ResponseEntity<>(trainerService.getAllTrainers(), HttpStatus.OK);
     }
 
-    @PreAuthorize("hasAuthority('ADMIN') || hasAuthority('TRAINER')")
+    // @PreAuthorize("hasAuthority('ADMIN') || hasAuthority('TRAINER')")
     @GetMapping("/{id}")
     public ResponseEntity<Optional<Trainer>> getTrainerById(@PathVariable("id") Integer id) {
         return new ResponseEntity<>(trainerService.getTrainerById(id), HttpStatus.OK);
     }
 
-    @PreAuthorize("hasAuthority('ADMIN') || hasAuthority('TRAINER')")
+    // @PreAuthorize("hasAuthority('ADMIN') || hasAuthority('TRAINER')")
     @PostMapping
     public ResponseEntity<Trainer> createTrainer(@RequestBody Trainer newTrainer) {
+        newTrainer.setPassword(passwordEncoder.encode(newTrainer.getPassword()));
         return new ResponseEntity<>(trainerService.createTrainer(newTrainer), HttpStatus.OK);
     }
 
-    @PreAuthorize("hasAuthority('ADMIN') || hasAuthority('TRAINER')")
+    // @PreAuthorize("hasAuthority('ADMIN') || hasAuthority('TRAINER')")
     @PutMapping("/{id}")
     public ResponseEntity<String> updateTrainer(@PathVariable("id") Integer id, @RequestBody Trainer updateTrainer){
         try{
@@ -55,7 +60,7 @@ public class TrainerControllrt {
         } 
     }
 
-    @PreAuthorize("hasAuthority('ADMIN') || hasAutority('TRAINER')")
+    // @PreAuthorize("hasAuthority('ADMIN') || hasAutority('TRAINER')")
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteTrainer(@PathVariable("id") Integer id){
         try{

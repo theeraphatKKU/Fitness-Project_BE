@@ -39,4 +39,9 @@ public class GroupSessionController {
     public void deleteGroupSession(@PathVariable int id) {
         groupSessionService.deleteGroupSession(id);
     }
+    @PutMapping("/addMember/{id}")
+    public GroupSession addMembersToGroupSession(@PathVariable int id, @RequestBody GroupSession groupSessionRequest) {
+        return groupSessionService.addMembersToGroupSession(id, groupSessionRequest);
+    }
+    
 }

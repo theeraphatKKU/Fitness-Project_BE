@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.fitness.cs.fitness_project_be.model.User;
 import com.fitness.cs.fitness_project_be.service.UserService;
 
+
 @RestController
 @RequestMapping("/api/user")
 public class UserController {

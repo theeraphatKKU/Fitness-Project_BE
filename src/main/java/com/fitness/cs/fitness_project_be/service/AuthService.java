@@ -29,8 +29,8 @@ public class AuthService {
     @Autowired
     private JwtService jwtService;
     
-    @Autowired
-    private RefreshTokenService refreshTokenService;
+    // @Autowired
+    // private RefreshTokenService refreshTokenService;
     
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -46,7 +46,7 @@ public class AuthService {
 
         User savedUser = userRepository.save(user);
         var accessToken = jwtService.generateToken(savedUser);
-        var refreshToken = refreshTokenService.createRefreshToken(savedUser.getEmail());
+        // var refreshToken = refreshTokenService.createRefreshToken(savedUser.getEmail());
 
         return AuthResponse.builder()
                 .name(user.getName())
@@ -55,7 +55,7 @@ public class AuthService {
                 .phoneNumber(user.getPhoneNumber())
                 .role(UserRole.USER)
                 .accessToken(accessToken)
-                .refreshToken(refreshToken.getRefreshToken())
+                // .refreshToken(refreshToken.getRefreshToken())
                 .message("Register success")
                 .build();
     }
@@ -70,16 +70,17 @@ public class AuthService {
 
         var user = userRepository.findByEmail(loginRequest.getEmail()).orElseThrow(() -> new UsernameNotFoundException("User not found!"));
         var accessToken = jwtService.generateToken(user);
-        var refreshToken = refreshTokenService.createRefreshToken(loginRequest.getEmail());
+        // var refreshToken = refreshTokenService.createRefreshToken(loginRequest.getEmail());
 
         return AuthResponse.builder()
+        .id(user.getId())
         .name(user.getName())
         .email(user.getEmail())
         .password(passwordEncoder.encode(user.getPassword()))
         .phoneNumber(user.getPhoneNumber())
         .role(user.getRole())
         .accessToken(accessToken)
-        .refreshToken(refreshToken.getRefreshToken())
+        // .refreshToken(refreshToken.getRefreshToken())
         .message("Login success")
         .build();
     }

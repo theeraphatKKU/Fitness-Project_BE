@@ -14,11 +14,19 @@ public class Program {
     String description;
     String programType;
 
+    public Program(){
+
+    }
+
     public Program(int programId,String programName, String description, String programType) {
         this.programId = programId;
         this.programName = programName;
         this.description = description;
         this.programType = programType;
+    }
+
+    public Program(int programId) {
+        this.programId = programId;
     }
     
 
