@@ -73,24 +73,23 @@
 		</dependency>
 		
 		 <!--Ensure this version is compatible with your setup -->
-		<dependency>
+		<!-- <dependency>
 			<groupId>com.microsoft.sqlserver</groupId>
 			<artifactId>mssql-jdbc</artifactId>
 			 <version>11.2.0.jre8</version>	
-		</dependency>
-		
-		<dependency>
+		</dependency> -->
+		<!-- <dependency>
 			<groupId>com.microsoft.sqlserver</groupId>
 			<artifactId>mssql-jdbc</artifactId>
 			<scope>runtime</scope>
-		</dependency>
+		</dependency> -->
 		
 		 <!--Make sure this version matches your setup -->
-		<dependency>
+		<!-- <dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>8.0.33</version>
-		</dependency>
+		</dependency> -->
 
 		<dependency>
 			<groupId>com.mysql</groupId>
